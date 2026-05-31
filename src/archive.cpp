@@ -167,3 +167,52 @@ void extract(const char* pakName, const char* fileName)
 
     std::cout << "Did not find " << fileName << " in the archive!";
 }
+
+void unpack(const char* pakName, const char* folderName)
+{
+    if (!(std::filesystem::exists(folderName) || std::filesystem::is_directory(folderName)))
+        std::filesystem::create_directories(folderName);
+
+    Buffer bytes{readFileToBuffer(pakName)};
+
+    uint32_t fileCount {readU32LE(&bytes, 4)};
+
+    for (int i{0}; i < fileCount; i++)
+    {
+        char name[32]{};
+        getString(&bytes, FILE_TABLE_OFFSET+(FILE_TABLE_ENTRY_SIZE*i), name);
+
+        size_t size {readU32LE(&bytes, 32+FILE_TABLE_OFFSET+(FILE_TABLE_ENTRY_SIZE*i))};
+        uint32_t offset {readU32LE(&bytes, 36+FILE_TABLE_OFFSET+(FILE_TABLE_ENTRY_SIZE*i))};
+
+        Buffer fileBytes{initBuffer(size)};
+
+        for (size_t j{0}; j < size; j++)
+        {
+            fileBytes.data[j] = bytes.data[offset+j];
+        }
+
+        size_t lenFolderName = strlen(folderName);
+
+        char path[34+lenFolderName];
+        path[0] = '\0';
+        strcat(path, folderName);
+        strcat(path, "/");
+        strcat(path, name);
+
+        std::cout << "Extracting " << path << "...\n";
+
+        writeBufferToFile(&fileBytes, path);
+
+        freeBuffer(&fileBytes);
+
+        std::cout << "Extracted " << name << " from " << pakName << ".\n";
+    }
+
+    freeBuffer(&bytes);
+}
+
+void verify(const char* pakName)
+{
+
+}

@@ -22,6 +22,10 @@ int main(int argc, char* argv[])
     {
         extract(argv[2], argv[3]);
     }
+    else if(std::strcmp(argv[1], "unpack") == 0)
+    {
+        unpack(argv[2], argv[3]);
+    }
     else if(std::strcmp(argv[1], "print") == 0)
     {
         Buffer bytes{readFileToBuffer(argv[2])};
