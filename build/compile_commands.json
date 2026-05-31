@@ -1,0 +1,20 @@
+[
+{
+  "directory": "C:/Users/HP/Desktop/C++/Archive-Tool/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -IC:/Users/HP/Desktop/C++/Archive-Tool/include -g -std=gnu++17 -o CMakeFiles\\archive_tool.dir\\src\\main.cpp.obj -c C:\\Users\\HP\\Desktop\\C++\\Archive-Tool\\src\\main.cpp",
+  "file": "C:/Users/HP/Desktop/C++/Archive-Tool/src/main.cpp",
+  "output": "C:/Users/HP/Desktop/C++/Archive-Tool/build/CMakeFiles/archive_tool.dir/src/main.cpp.obj"
+},
+{
+  "directory": "C:/Users/HP/Desktop/C++/Archive-Tool/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -IC:/Users/HP/Desktop/C++/Archive-Tool/include -g -std=gnu++17 -o CMakeFiles\\archive_tool.dir\\src\\buffer.cpp.obj -c C:\\Users\\HP\\Desktop\\C++\\Archive-Tool\\src\\buffer.cpp",
+  "file": "C:/Users/HP/Desktop/C++/Archive-Tool/src/buffer.cpp",
+  "output": "C:/Users/HP/Desktop/C++/Archive-Tool/build/CMakeFiles/archive_tool.dir/src/buffer.cpp.obj"
+},
+{
+  "directory": "C:/Users/HP/Desktop/C++/Archive-Tool/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -IC:/Users/HP/Desktop/C++/Archive-Tool/include -g -std=gnu++17 -o CMakeFiles\\archive_tool.dir\\src\\archive.cpp.obj -c C:\\Users\\HP\\Desktop\\C++\\Archive-Tool\\src\\archive.cpp",
+  "file": "C:/Users/HP/Desktop/C++/Archive-Tool/src/archive.cpp",
+  "output": "C:/Users/HP/Desktop/C++/Archive-Tool/build/CMakeFiles/archive_tool.dir/src/archive.cpp.obj"
+}
+]

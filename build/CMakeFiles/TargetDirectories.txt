@@ -1,0 +1,3 @@
+C:/Users/HP/Desktop/C++/Archive-Tool/build/CMakeFiles/archive_tool.dir
+C:/Users/HP/Desktop/C++/Archive-Tool/build/CMakeFiles/edit_cache.dir
+C:/Users/HP/Desktop/C++/Archive-Tool/build/CMakeFiles/rebuild_cache.dir

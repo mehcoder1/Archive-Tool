@@ -1,0 +1,7 @@
+# ninja log v7
+24	583	8018788024625323	CMakeFiles/archive_tool.dir/src/main.cpp.obj	13d691eb9a6b9cf9
+2247	2729	8018805035087201	archive_tool.exe	d4e580522d48aab
+25	671	8018788585829211	CMakeFiles/archive_tool.dir/src/buffer.cpp.obj	8c468b61c1da19d0
+53	2245	8018805013171485	CMakeFiles/archive_tool.dir/src/archive.cpp.obj	f572813bc5aa4089
+90	3960	8019314380423755	CMakeFiles/archive_tool.dir/src/archive.cpp.obj	f572813bc5aa4089
+3962	4557	8019314419135522	archive_tool.exe	d4e580522d48aab
