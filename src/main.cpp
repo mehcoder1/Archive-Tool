@@ -26,6 +26,13 @@ int main(int argc, char* argv[])
     {
         unpack(argv[2], argv[3]);
     }
+    else if(std::strcmp(argv[1], "verify") == 0)
+    {
+        if (verify(argv[2]))
+            std::cout << "File is healthy!";
+        else
+            std::cout << "File is corrupted :(";
+    }
     else if(std::strcmp(argv[1], "print") == 0)
     {
         Buffer bytes{readFileToBuffer(argv[2])};

@@ -9,4 +9,4 @@ void pack(const char* directory, const char* fileName);
 void list(const char* fileName);
 void extract(const char* pakName, const char* fileName);
 void unpack(const char* pakName, const char* folderName);
-void verify(const char* pakName);
+bool verify(const char* pakName);

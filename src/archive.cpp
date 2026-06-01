@@ -45,7 +45,9 @@ void pack(const char* directory, const char* fileName)
     size_t fileCount{0};
     for (const auto& entry : std::filesystem::directory_iterator(directory))
     {
-        if (!entry.is_regular_file())
+        std::string name {entry.path().filename().string()};
+        size_t lenName = name.size();
+        if (!entry.is_regular_file() || lenName >=32)
             continue;
 
         fileCount++;
@@ -212,7 +214,63 @@ void unpack(const char* pakName, const char* folderName)
     freeBuffer(&bytes);
 }
 
-void verify(const char* pakName)
+bool verify(const char* pakName)
 {
+    Buffer bytes{readFileToBuffer(pakName)};
 
+    if (bytes.data[0] != 'M' || bytes.data[1] != 'A' || bytes.data[2] != 'R' || bytes.data[3] != 'C')
+        return false;
+
+    uint32_t fileCount {readU32LE(&bytes, 4)};
+
+    size_t calculatedSize {8 + FILE_TABLE_ENTRY_SIZE*fileCount};
+
+    for (size_t i{0}; i < fileCount; i++)
+    {
+        char name[32]{};
+        getString(&bytes, FILE_TABLE_OFFSET+(FILE_TABLE_ENTRY_SIZE*i), name);
+
+        if (strcmp(name, "") == 0)
+        {
+            std::cout << "File name is empty.\n";
+            return false;
+        }
+
+        if (name[31] != '\0')
+        {
+            std::cout << "File name is non null-terminated.\n";
+            return false;
+        }
+
+        if (strchr(name, '/') != nullptr)
+        {
+            std::cout << "File name has '/' character.\n";
+            return false;
+        }
+
+        if (strchr(name, ':') != nullptr)
+        {
+            std::cout << "File name has '/' character.\n";
+            return false;
+        }
+
+        uint32_t fileSize {readU32LE(&bytes, 40+FILE_TABLE_ENTRY_SIZE*i)};
+        uint32_t fileOffset {readU32LE(&bytes, 44+FILE_TABLE_ENTRY_SIZE*i)};
+
+        if (fileOffset < 8+FILE_TABLE_ENTRY_SIZE*fileCount)
+        {
+            std::cout << "File offset is wrong/corrupted.";
+            return false;
+        }
+
+        calculatedSize+=fileSize;
+    }
+
+    if (calculatedSize != bytes.size)
+    {
+        std::cout << "Calculated file size: " << calculatedSize << ", Actual file size: " << bytes.size << '\n';
+        return false;
+    }
+
+    return true;
 }
